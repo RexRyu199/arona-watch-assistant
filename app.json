@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "tactical-hud",
-    "slug": "tactical-hud",
+    "name": "arona-watch-assistant",
+    "slug": "arona-watch-assistant",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "tacticalhud",
+    "scheme": "arona-watch-assistant",
     "userInterfaceStyle": "automatic",
     "ios": {
       "icon": "./assets/expo.icon"
@@ -32,7 +32,13 @@
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 76
         }
-      ]
+      ],
+      "expo-font",
+      "expo-status-bar",
+      "expo-image",
+      "expo-web-browser",
+      "expo-audio",
+      "expo-asset"
     ],
     "experiments": {
       "typedRoutes": true,

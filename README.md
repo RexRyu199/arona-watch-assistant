@@ -1,56 +1,52 @@
-# Welcome to your Expo app 👋
+# Arona: asistente de voz para reloj (simulado en iPhone)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+App hecha con React Native y Expo (SDK 57) que simula un reloj inteligente con un asistente de voz. La pantalla está vacía hasta que se le pide algo: se dice "Oye Arona" seguido de un comando, y el reloj responde mostrando la información y diciéndola en voz alta.
 
-## Get started
+## Funciones
 
-1. Install dependencies
+- Palabra de activación "Arona" con escucha continua
+- Respuesta en pantalla y por voz (`expo-speech`)
+- Hora, fecha, pasos (podómetro), temperatura y clima completo (Open-Meteo, caché de 30 min), batería y cronómetro
+- Filtro de ruido de fondo para no activarse con sonidos ambientales
+- Campo de texto como respaldo para escribir comandos
 
-   ```bash
-   npm install
-   ```
+## Comandos de ejemplo
 
-2. Start the app
+- "Oye Arona, dame la hora"
+- "Arona, pasos" / "Arona, clima" / "Arona, batería" / "Arona, fecha"
+- "Arona, inicia el cronómetro" / "pausa" / "reinicia"
+- Solo "Oye Arona" y esperar el "Dime"
+- Mantener presionado el círculo: enciende o apaga la escucha
 
-   ```bash
-   npx expo start
-   ```
+## Requisitos
 
-In the output, you'll find options to open the app in a
+- Node.js y npm
+- App Expo Go en el iPhone (versión compatible con SDK 57)
+- Cuenta gratuita de Expo, con sesión iniciada en la terminal (`npx expo login`) y en Expo Go
+- API key de Groq para la transcripción de voz (Whisper)
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **src/app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## Instalación
 
 ```bash
-npm run reset-project
+git clone https://github.com/RexRyu199/arona-watch-assistant.git
+cd arona-watch-assistant
+npm install
 ```
 
-This command will move the starter code to the **example** directory and create a blank **src/app** directory where you can start developing.
+Crea `src/secrets.js` copiando `src/secrets.example.js` y pega tu API key:
 
-### Other setup steps
+```js
+export const STT_API_KEY = 'tu_api_key';
+```
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+Inicia el proyecto y escanea el QR con la cámara del iPhone:
 
-## Learn more
+```bash
+npx expo start -c
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## Limitaciones
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- Corre en Expo Go, simulando el reloj dentro del teléfono. No es una app nativa de Wear OS.
+- La palabra de activación se detecta transcribiendo el audio en la nube, por lo que necesita internet y tarda 1 a 3 segundos. Una versión nativa podría hacerlo de forma local.
+- Solo funciona con la app abierta y la pantalla encendida.
